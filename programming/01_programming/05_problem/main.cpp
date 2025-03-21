@@ -1,18 +1,11 @@
 /**
  * Course     : CS106B
  * Programming: 1
- * Problem    : 4 - Strings
+ * Problem    : 5 - File processing and vectors
  * File       : main.cpp
  * Author     : Parallaxes
  * 
- * This program calculates the Soundex code for a given surname. The Soundex 
- * algorithm follows as such:
- * 1. Keep the first letter of the surname (convert to uppercase if necessary)
- * 2. Convert all other letters in the surname to a digit using the Soundex 
- *    data table (discard any non-letter characters: dashes, spaces, and so on)
- * 3. Remove any consecutive duplicate digits (e.g. A122235 becomes A1235)
- * 4. Remove any zeros
- * 5. Make resulting code exactly length 4 by truncating or padding with zeros
+ * This program sorts a list of scores into histogram buckets.
  */
 
 #include <iostream>
@@ -22,6 +15,11 @@
 
 using namespace std;
 
+
+/// @brief Parses file input and appends scores to buckets
+/// @param file the file to read scores from
+/// @param scores the template vector of scores
+/// @return The vector of scores with read scores appended
 vector<string> parse(string file, vector<string> scores) {
     fstream in;
     in.open(file.c_str());
@@ -31,6 +29,8 @@ vector<string> parse(string file, vector<string> scores) {
 
     string score;
     while (in >> score) {
+        // We can identify the bucket of a score in correspondance to its index
+        // in the vector by its first digit
         scores[score[0] - '0'] += 'X';
     }
 
@@ -43,11 +43,13 @@ int main() {
         "0-9: ", "10-19: ", "20-29: ", "30-39: ", "40-49: ", 
         "50-59: ", "60-69: ", "70-79: ", "80-89: ", "90-99: "
     };
+
     bool success = false;
     while (!success) {
         cout << "Enter the name of the scoring file: ";
         cin >> file;
 
+        // If parse returns a read error, reprompt user
         try {
             scores = parse(file, scores);
             success = true;
@@ -59,4 +61,6 @@ int main() {
     for (const auto score : scores) {
         cout << score << endl;
     }
+
+    return 0;
 }
