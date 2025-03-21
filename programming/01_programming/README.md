@@ -23,7 +23,7 @@ functions.
 
 | # | Problem                                                              |
 |---|----------------------------------------------------------------------|
-| 0 | [Warmup: Getting your C++ compiler working](00_warmup/main.cpp)      |
+| 0 | [Warmup: Getting your C++ compiler working](00_warmup/warmup.cpp)      |
 | 1 | [Variables, arithmetic, and control structures](01_problem/main.cpp) |
 | 2 | [Simulation and use of random/io libraries](02_problem/main.cpp)     |
 | 3 | [Graphics](03_problem/main.cpp)                                      |
