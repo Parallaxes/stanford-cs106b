@@ -52,22 +52,22 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../../CppFundamentals.cpp \
-		../../HaikuDetection.cpp \
-		../../HumanPyramids.cpp \
+SOURCES       = ../../prog/HaikuDetection.cpp \
+		../../prog/HumanPyramids.cpp \
+		../../prog/RandomShuffle.cpp \
+		../../prog/Statistics.cpp \
+		../../CppFundamentals.cpp \
 		../../main.cpp \
-		../../RandomShuffle.cpp \
-		../../Statistics.cpp \
 		../../testing/MemoryDiagnostics.cpp \
 		../../testing/TestDriver.cpp \
 		../../testing/TestingGUI.cpp \
 		../../testing/TextUtils.cpp 
-OBJECTS       = CppFundamentals.o \
-		HaikuDetection.o \
+OBJECTS       = HaikuDetection.o \
 		HumanPyramids.o \
-		main.o \
 		RandomShuffle.o \
 		Statistics.o \
+		CppFundamentals.o \
+		main.o \
 		MemoryDiagnostics.o \
 		TestDriver.o \
 		TestingGUI.o \
@@ -308,12 +308,12 @@ DIST          = /home/parallaxis/Qt/6.8.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Section1.pro ../../testing/MemoryDiagnostics.h \
 		../../testing/SimpleTest.h \
 		../../testing/TestDriver.h \
-		../../testing/TextUtils.h ../../CppFundamentals.cpp \
-		../../HaikuDetection.cpp \
-		../../HumanPyramids.cpp \
+		../../testing/TextUtils.h ../../prog/HaikuDetection.cpp \
+		../../prog/HumanPyramids.cpp \
+		../../prog/RandomShuffle.cpp \
+		../../prog/Statistics.cpp \
+		../../CppFundamentals.cpp \
 		../../main.cpp \
-		../../RandomShuffle.cpp \
-		../../Statistics.cpp \
 		../../testing/MemoryDiagnostics.cpp \
 		../../testing/TestDriver.cpp \
 		../../testing/TestingGUI.cpp \
@@ -823,7 +823,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /home/parallaxis/Qt/6.8.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../testing/MemoryDiagnostics.h ../../testing/SimpleTest.h ../../testing/TestDriver.h ../../testing/TextUtils.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../CppFundamentals.cpp ../../HaikuDetection.cpp ../../HumanPyramids.cpp ../../main.cpp ../../RandomShuffle.cpp ../../Statistics.cpp ../../testing/MemoryDiagnostics.cpp ../../testing/TestDriver.cpp ../../testing/TestingGUI.cpp ../../testing/TextUtils.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../prog/HaikuDetection.cpp ../../prog/HumanPyramids.cpp ../../prog/RandomShuffle.cpp ../../prog/Statistics.cpp ../../CppFundamentals.cpp ../../main.cpp ../../testing/MemoryDiagnostics.cpp ../../testing/TestDriver.cpp ../../testing/TestingGUI.cpp ../../testing/TextUtils.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -843,7 +843,7 @@ distclean: clean
 	$(error No CS106 library found. Install CS106 package following instructions at https://web.stanford.edu/dept/cs_edu/qt)
 
 /home/parallaxis/.local/share/cs106/lib/version2024.1:
-	$(error Cannot find version 2021.1 of CS106 library. Install CS106 package following instructions at https://web.stanford.edu/dept/cs_edu/qt)
+	$(error Cannot find version 2024.1 of CS106 library. Install CS106 package following instructions at https://web.stanford.edu/dept/cs_edu/qt)
 
 mocclean: compiler_moc_header_clean compiler_moc_objc_header_clean compiler_moc_source_clean
 
@@ -880,33 +880,27 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
+HaikuDetection.o: ../../prog/HaikuDetection.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HaikuDetection.o ../../prog/HaikuDetection.cpp
+
+HumanPyramids.o: ../../prog/HumanPyramids.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HumanPyramids.o ../../prog/HumanPyramids.cpp
+
+RandomShuffle.o: ../../prog/RandomShuffle.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o RandomShuffle.o ../../prog/RandomShuffle.cpp
+
+Statistics.o: ../../prog/Statistics.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Statistics.o ../../prog/Statistics.cpp
+
 CppFundamentals.o: ../../CppFundamentals.cpp ../../testing/SimpleTest.h \
 		../../testing/TestDriver.h \
 		../../testing/TextUtils.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CppFundamentals.o ../../CppFundamentals.cpp
 
-HaikuDetection.o: ../../HaikuDetection.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HaikuDetection.o ../../HaikuDetection.cpp
-
-HumanPyramids.o: ../../HumanPyramids.cpp ../../testing/SimpleTest.h \
-		../../testing/TestDriver.h \
-		../../testing/TextUtils.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HumanPyramids.o ../../HumanPyramids.cpp
-
 main.o: ../../main.cpp ../../testing/SimpleTest.h \
 		../../testing/TestDriver.h \
 		../../testing/TextUtils.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
-
-RandomShuffle.o: ../../RandomShuffle.cpp ../../testing/SimpleTest.h \
-		../../testing/TestDriver.h \
-		../../testing/TextUtils.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o RandomShuffle.o ../../RandomShuffle.cpp
-
-Statistics.o: ../../Statistics.cpp ../../testing/SimpleTest.h \
-		../../testing/TestDriver.h \
-		../../testing/TextUtils.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Statistics.o ../../Statistics.cpp
 
 MemoryDiagnostics.o: ../../testing/MemoryDiagnostics.cpp ../../testing/MemoryDiagnostics.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MemoryDiagnostics.o ../../testing/MemoryDiagnostics.cpp
