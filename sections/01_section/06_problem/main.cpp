@@ -58,7 +58,7 @@ Statistics documentStatisticsFor(istream& input) {
 
 TEST_CASE("Provided Test: Use sample text file to compute statistics.") {
     ifstream input;
-    input.open("res/stats.txt");
+    input.open("stats.txt");
     Statistics s = documentStatisticsFor(input);
     CHECK(s.min == -4.2);
     CHECK(s.max == 30.12);
